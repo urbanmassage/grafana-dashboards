@@ -3,26 +3,38 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "description": "Basic Mysql dashboard for the prometheus exporter ",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": 6239,
   "graphTooltip": 0,
-  "id": 5,
-  "iteration": 1597328493919,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -31,32 +43,59 @@
       },
       "id": 17,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Global status",
       "type": "row"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#bf1b00",
-        "#508642",
-        "#ef843c"
-      ],
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-red",
+                "value": null
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 1
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 2
+              }
+            ]
+          },
+          "unit": "none"
         },
         "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 1,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 7,
@@ -65,86 +104,83 @@
         "y": 1
       },
       "id": 11,
-      "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": true,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
       },
-      "tableColumn": "mysql_up{app=\"mysql-monitor-shared-services\", instance=\"10.60.10.14:8096\", job=\"kubernetes-pods\", kubernetes_namespace=\"monitoring\", kubernetes_pod_name=\"mysql-monitor-shared-services-65fb4bdc66-4qwr6\", pod_template_hash=\"65fb4bdc66\"}",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
           "expr": "mysql_up{app=\"$app\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "",
+          "range": true,
           "refId": "A"
         }
       ],
-      "thresholds": "1,2",
       "title": "Instance Up",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "#d44a3a",
-        "rgba(237, 129, 40, 0.89)",
-        "#508642"
-      ],
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#d44a3a",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 25200
+              },
+              {
+                "color": "#508642",
+                "value": 32400
+              }
+            ]
+          },
+          "unit": "s"
         },
         "overrides": []
-      },
-      "format": "s",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 7,
@@ -153,74 +189,50 @@
         "y": 1
       },
       "id": 15,
-      "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
       },
-      "tableColumn": "mysql_global_status_uptime{app=\"mysql-monitor-shared-services\", instance=\"10.60.10.14:8096\", job=\"kubernetes-pods\", kubernetes_namespace=\"monitoring\", kubernetes_pod_name=\"mysql-monitor-shared-services-65fb4bdc66-4qwr6\", pod_template_hash=\"65fb4bdc66\"}",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
           "expr": "mysql_global_status_uptime{app=\"$app\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "",
+          "range": true,
           "refId": "A"
         }
       ],
-      "thresholds": "25200,32400",
       "title": "Uptime",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "stat"
     },
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -245,8 +257,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -256,6 +271,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "mysql_global_status_max_used_connections{app=\"$app\"}",
           "format": "time_series",
           "interval": "",
@@ -264,6 +283,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "mysql_global_variables_max_connections{app=\"$app\"}",
           "format": "time_series",
           "interval": "",
@@ -273,9 +296,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Mysql Connections",
       "tooltip": {
         "shared": true,
@@ -284,38 +305,32 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -324,6 +339,15 @@
       },
       "id": 19,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "I/O",
       "type": "row"
     },
@@ -332,12 +356,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -362,8 +383,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -378,6 +402,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "irate(mysql_global_status_innodb_data_reads{app=\"$app\"}[10m])",
           "format": "time_series",
           "interval": "",
@@ -386,6 +414,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "irate(mysql_global_status_innodb_data_writes{app=\"$app\"}[10m])",
           "format": "time_series",
           "interval": "",
@@ -395,9 +427,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "mysql  disk reads vs writes",
       "tooltip": {
         "shared": true,
@@ -406,33 +436,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -440,12 +461,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -470,8 +488,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -486,6 +507,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "irate(mysql_global_status_bytes_received{app=\"$app\"}[5m])",
           "format": "time_series",
           "interval": "",
@@ -494,6 +519,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "irate(mysql_global_status_bytes_sent{app=\"$app\"}[5m])",
           "format": "time_series",
           "interval": "",
@@ -503,9 +532,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "mysql network received vs sent",
       "tooltip": {
         "shared": true,
@@ -514,33 +541,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -548,12 +566,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -578,8 +593,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -589,6 +607,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "irate(mysql_global_status_commands_total{app=\"$app\"}[5m]) > 0",
           "format": "time_series",
           "interval": "",
@@ -598,9 +620,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Query rates",
       "tooltip": {
         "shared": true,
@@ -609,33 +629,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -643,12 +654,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -673,8 +681,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -684,6 +695,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "mysql_global_status_threads_running{app=\"$app\"} ",
           "format": "time_series",
           "interval": "",
@@ -693,9 +708,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Running Threads",
       "tooltip": {
         "shared": true,
@@ -704,39 +717,33 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
-          "decimals": null,
           "format": "short",
-          "label": null,
           "logBase": 1,
           "max": "15",
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -745,6 +752,15 @@
       },
       "id": 21,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Errors",
       "type": "row"
     },
@@ -753,14 +769,11 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "description": "The number of connections that were aborted because the client died without closing the connection properly. See Section B.5.2.10, “Communication Errors and Aborted Connections”.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
+      "description": "The number of connections that were aborted because the client died without closing the connection properly. See Section B.5.2.10, “Communication Errors and Aborted Connections”.",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -784,8 +797,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -795,6 +811,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "mysql_global_status_aborted_clients{app=\"$app\"}",
           "format": "time_series",
           "interval": "",
@@ -804,9 +824,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Aborted clients",
       "tooltip": {
         "shared": true,
@@ -815,33 +833,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -849,14 +858,11 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "description": "The number of failed attempts to connect to the MySQL server. See Section B.5.2.10, “Communication Errors and Aborted Connections”.\n\nFor additional connection-related information, check the Connection_errors_xxx status variables and the host_cache table.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
+      "description": "The number of failed attempts to connect to the MySQL server. See Section B.5.2.10, “Communication Errors and Aborted Connections”.\n\nFor additional connection-related information, check the Connection_errors_xxx status variables and the host_cache table.",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -880,8 +886,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -891,6 +900,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "mysql_global_status_aborted_connects{app=\"$app\"}",
           "format": "time_series",
           "interval": "",
@@ -900,9 +913,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "mysql aborted Connects",
       "tooltip": {
         "shared": true,
@@ -911,38 +922,32 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -951,6 +956,15 @@
       },
       "id": 23,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Disk usage",
       "type": "row"
     },
@@ -959,12 +973,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -989,8 +1000,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1000,6 +1014,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "sum(mysql_info_schema_table_size{component=\"data_length\",app=\"$app\"})",
           "format": "time_series",
           "interval": "",
@@ -1008,6 +1026,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "sum(mysql_info_schema_table_size{component=\"index_length\",app=\"$app\"})",
           "format": "time_series",
           "interval": "",
@@ -1017,9 +1039,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Disk usage tables / indexes",
       "tooltip": {
         "shared": true,
@@ -1028,33 +1048,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "decbytes",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1062,12 +1073,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -1092,8 +1100,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "9.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1103,6 +1114,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "sum(mysql_info_schema_table_rows{app=\"$app\"})",
           "format": "time_series",
           "interval": "",
@@ -1112,9 +1127,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Sum of all rows",
       "tooltip": {
         "shared": true,
@@ -1123,38 +1136,30 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
-          "decimals": null,
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     }
   ],
-  "schemaVersion": 26,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "Databases",
@@ -1163,27 +1168,30 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": "mysql-monitor-shared-services",
           "value": "mysql-monitor-shared-services"
         },
-        "datasource": "Prometheus",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(mysql_up,app)",
         "hide": 0,
         "includeAll": false,
-        "label": null,
         "multi": false,
         "name": "app",
         "options": [],
-        "query": "label_values(mysql_up,app)",
+        "query": {
+          "query": "label_values(mysql_up,app)",
+          "refId": "Prometheus-app-Variable-Query"
+        },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1220,6 +1228,6 @@
   },
   "timezone": "",
   "title": "Mysql - Prometheus",
-  "uid": "6-kPlS7ik",
-  "version": 2
+  "version": 1,
+  "weekStart": ""
 }

@@ -1,0 +1,723 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "Kubernetes Deployments Overview",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "gnetId": 10858,
+    "graphTooltip": 1,
+    "id": 28,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 15,
+        "panels": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "text": "0"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "none"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 3,
+              "w": 6,
+              "x": 0,
+              "y": 1
+            },
+            "id": 5,
+            "links": [],
+            "maxDataPoints": 100,
+            "options": {
+              "colorMode": "none",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "mean"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "9.4.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "expr": "max(kube_deployment_spec_replicas{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+                "intervalFactor": 2,
+                "metric": "kube_deployment_spec_replicas",
+                "refId": "A",
+                "step": 600
+              }
+            ],
+            "title": "Desired Replicas",
+            "type": "stat"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "text": "0"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "none"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 3,
+              "w": 6,
+              "x": 6,
+              "y": 1
+            },
+            "id": 6,
+            "links": [],
+            "maxDataPoints": 100,
+            "options": {
+              "colorMode": "none",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "mean"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "9.4.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "expr": "min(kube_deployment_status_replicas_available{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+                "intervalFactor": 2,
+                "refId": "A",
+                "step": 600
+              }
+            ],
+            "title": "Available Replicas",
+            "type": "stat"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "text": "0"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "none"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 3,
+              "w": 6,
+              "x": 12,
+              "y": 1
+            },
+            "id": 3,
+            "links": [],
+            "maxDataPoints": 100,
+            "options": {
+              "colorMode": "none",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "mean"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "9.4.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "expr": "max(kube_deployment_status_observed_generation{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+                "intervalFactor": 2,
+                "refId": "A",
+                "step": 600
+              }
+            ],
+            "title": "Observed Generation",
+            "type": "stat"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "text": "0"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "none"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 3,
+              "w": 6,
+              "x": 18,
+              "y": 1
+            },
+            "id": 2,
+            "links": [],
+            "maxDataPoints": 100,
+            "options": {
+              "colorMode": "none",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "mean"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "9.4.3",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "expr": "max(kube_deployment_metadata_generation{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+                "intervalFactor": 2,
+                "refId": "A",
+                "step": 600
+              }
+            ],
+            "title": "Metadata Generation",
+            "type": "stat"
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "editable": true,
+            "error": false,
+            "fill": 1,
+            "fillGradient": 0,
+            "grid": {
+              "threshold1Color": "rgba(216, 200, 27, 0.27)",
+              "threshold2Color": "rgba(234, 112, 112, 0.22)"
+            },
+            "gridPos": {
+              "h": 9,
+              "w": 24,
+              "x": 0,
+              "y": 4
+            },
+            "hiddenSeries": false,
+            "id": 1,
+            "isNew": true,
+            "legend": {
+              "alignAsTable": false,
+              "avg": false,
+              "current": false,
+              "hideEmpty": false,
+              "hideZero": false,
+              "max": false,
+              "min": false,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": false
+            },
+            "lines": true,
+            "linewidth": 2,
+            "links": [],
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "9.4.3",
+            "pointradius": 5,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "expr": "max(kube_deployment_status_replicas{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+                "intervalFactor": 2,
+                "legendFormat": "Current",
+                "refId": "A",
+                "step": 30
+              },
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "expr": "min(kube_deployment_status_replicas_available{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+                "intervalFactor": 2,
+                "legendFormat": "Available",
+                "refId": "B",
+                "step": 30
+              },
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "expr": "max(kube_deployment_status_replicas_unavailable{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+                "intervalFactor": 2,
+                "legendFormat": "Unavailable",
+                "refId": "C",
+                "step": 30
+              },
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "expr": "min(kube_deployment_status_replicas_updated{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+                "intervalFactor": 2,
+                "legendFormat": "Updated",
+                "refId": "D",
+                "step": 30
+              },
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "PBFA97CFB590B2093"
+                },
+                "expr": "max(kube_deployment_spec_replicas{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+                "intervalFactor": 2,
+                "legendFormat": "Desired",
+                "refId": "E",
+                "step": 30
+              }
+            ],
+            "thresholds": [],
+            "timeRegions": [],
+            "title": "Replicas",
+            "tooltip": {
+              "msResolution": true,
+              "shared": true,
+              "sort": 0,
+              "value_type": "cumulative"
+            },
+            "type": "graph",
+            "xaxis": {
+              "mode": "time",
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "format": "none",
+                "label": "",
+                "logBase": 1,
+                "show": true
+              },
+              {
+                "format": "short",
+                "label": "",
+                "logBase": 1,
+                "show": false
+              }
+            ],
+            "yaxis": {
+              "align": false
+            }
+          }
+        ],
+        "title": "Selected Deployment Status",
+        "type": "row"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "id": 13,
+        "panels": [],
+        "title": "All Deployments Status",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 49
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 99
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 4,
+          "x": 0,
+          "y": 2
+        },
+        "id": 16,
+        "links": [],
+        "maxPerRow": 6,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {
+            "valueSize": 50
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.4.3",
+        "repeat": "deployment_name",
+        "repeatDirection": "h",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "expr": "max(kube_deployment_status_replicas{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+            "hide": true,
+            "intervalFactor": 2,
+            "legendFormat": "Current",
+            "refId": "A",
+            "step": 30
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "expr": "max(kube_deployment_spec_replicas{deployment=\"$deployment_name\",namespace=\"$deployment_namespace\"}) without (instance, pod)",
+            "hide": true,
+            "intervalFactor": 2,
+            "legendFormat": "Desired",
+            "refId": "B",
+            "step": 30
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "$A / $B",
+            "hide": false,
+            "refId": "C",
+            "type": "math"
+          }
+        ],
+        "title": "$deployment_name",
+        "type": "stat"
+      }
+    ],
+    "refresh": "30s",
+    "revision": 1,
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": "",
+          "current": {
+            "selected": false,
+            "text": "services",
+            "value": "services"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "definition": "",
+          "hide": 0,
+          "includeAll": false,
+          "label": "Namespace",
+          "multi": false,
+          "name": "deployment_namespace",
+          "options": [],
+          "query": {
+            "query": "label_values(kube_deployment_metadata_generation, namespace)",
+            "refId": "Prometheus-deployment_namespace-Variable-Query"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": "",
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "definition": "",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Deployment",
+          "multi": true,
+          "name": "deployment_name",
+          "options": [],
+          "query": {
+            "query": "label_values(kube_deployment_metadata_generation{namespace=\"$deployment_namespace\"}, deployment)",
+            "refId": "Prometheus-deployment_name-Variable-Query"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "browser",
+    "title": "K8 Deployments Status",
+    "uid": "k8s_deployment_status",
+    "version": 1,
+    "weekStart": ""
+  }

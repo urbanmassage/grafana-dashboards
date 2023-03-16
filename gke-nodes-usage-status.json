@@ -1,0 +1,692 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 27,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "stackdriver",
+          "uid": "$datasource"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "Bytes",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 7,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true,
+            "width": 220
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+        },
+        "pluginVersion": "9.4.3",
+        "targets": [
+          {
+            "aliasBy": "{{resource.label.node_name}}",
+            "datasource": {
+              "uid": "$datasource"
+            },
+            "metricQuery": {
+              "aliasBy": "",
+              "alignmentPeriod": "$alignmentPeriod",
+              "filters": [
+                "resource.type",
+                "=",
+                "k8s_container"
+              ],
+              "groupBys": [],
+              "metricKind": "",
+              "metricType": "external.googleapis.com/prometheus/kube_node_status_capacity_pods",
+              "perSeriesAligner": "ALIGN_MEAN",
+              "projectName": "$project",
+              "unit": "",
+              "valueType": ""
+            },
+            "queryType": "timeSeriesList",
+            "refId": "A",
+            "timeSeriesList": {
+              "alignmentPeriod": "cloud-monitoring-auto",
+              "crossSeriesReducer": "REDUCE_NONE",
+              "filters": [
+                "resource.label.cluster_name",
+                "=",
+                "prod-cluster",
+                "AND",
+                "metric.type",
+                "=",
+                "kubernetes.io/node/memory/used_bytes"
+              ],
+              "groupBys": [
+                "resource.label.node_name"
+              ],
+              "perSeriesAligner": "ALIGN_SUM",
+              "preprocessor": "none",
+              "projectName": "$project"
+            }
+          }
+        ],
+        "title": "Nodes Memory Usage",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "stackdriver",
+          "uid": "$datasource"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "CPU",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 15
+        },
+        "id": 8,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true,
+            "width": 220
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+        },
+        "pluginVersion": "9.4.3",
+        "targets": [
+          {
+            "aliasBy": "{{resource.label.node_name}}",
+            "datasource": {
+              "uid": "$datasource"
+            },
+            "metricQuery": {
+              "aliasBy": "",
+              "alignmentPeriod": "$alignmentPeriod",
+              "filters": [
+                "resource.type",
+                "=",
+                "k8s_container"
+              ],
+              "groupBys": [],
+              "metricKind": "",
+              "metricType": "external.googleapis.com/prometheus/kube_node_status_capacity_pods",
+              "perSeriesAligner": "ALIGN_MEAN",
+              "projectName": "$project",
+              "unit": "",
+              "valueType": ""
+            },
+            "queryType": "timeSeriesList",
+            "refId": "A",
+            "timeSeriesList": {
+              "alignmentPeriod": "cloud-monitoring-auto",
+              "crossSeriesReducer": "REDUCE_NONE",
+              "filters": [
+                "resource.label.cluster_name",
+                "=",
+                "prod-cluster",
+                "AND",
+                "metric.type",
+                "=",
+                "kubernetes.io/node/cpu/core_usage_time"
+              ],
+              "groupBys": [],
+              "perSeriesAligner": "ALIGN_NONE",
+              "preprocessor": "rate",
+              "projectName": "$project"
+            }
+          }
+        ],
+        "title": "Nodes - CPU Usage Time",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "stackdriver",
+          "uid": "$datasource"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "Bytes Received",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 30
+        },
+        "id": 9,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true,
+            "width": 220
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+        },
+        "pluginVersion": "9.4.3",
+        "targets": [
+          {
+            "aliasBy": "{{resource.label.node_name}}",
+            "datasource": {
+              "uid": "$datasource"
+            },
+            "metricQuery": {
+              "aliasBy": "",
+              "alignmentPeriod": "$alignmentPeriod",
+              "filters": [
+                "resource.type",
+                "=",
+                "k8s_container"
+              ],
+              "groupBys": [],
+              "metricKind": "",
+              "metricType": "external.googleapis.com/prometheus/kube_node_status_capacity_pods",
+              "perSeriesAligner": "ALIGN_MEAN",
+              "projectName": "$project",
+              "unit": "",
+              "valueType": ""
+            },
+            "queryType": "timeSeriesList",
+            "refId": "A",
+            "timeSeriesList": {
+              "alignmentPeriod": "cloud-monitoring-auto",
+              "crossSeriesReducer": "REDUCE_NONE",
+              "filters": [
+                "resource.label.cluster_name",
+                "=",
+                "prod-cluster",
+                "AND",
+                "metric.type",
+                "=",
+                "kubernetes.io/node/network/received_bytes_count"
+              ],
+              "groupBys": [
+                "resource.label.node_name"
+              ],
+              "perSeriesAligner": "ALIGN_NONE",
+              "preprocessor": "rate",
+              "projectName": "$project"
+            }
+          }
+        ],
+        "title": "Nodes - Network (bytes received) ",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "stackdriver",
+          "uid": "$datasource"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 45
+        },
+        "id": 10,
+        "options": {
+          "displayMode": "gradient",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "9.4.3",
+        "targets": [
+          {
+            "aliasBy": "{{resource.label.node_name}}",
+            "datasource": {
+              "uid": "$datasource"
+            },
+            "hide": true,
+            "metricQuery": {
+              "aliasBy": "",
+              "alignmentPeriod": "$alignmentPeriod",
+              "filters": [
+                "resource.type",
+                "=",
+                "k8s_container"
+              ],
+              "groupBys": [],
+              "metricKind": "",
+              "metricType": "external.googleapis.com/prometheus/kube_node_status_capacity_pods",
+              "perSeriesAligner": "ALIGN_MEAN",
+              "projectName": "$project",
+              "unit": "",
+              "valueType": ""
+            },
+            "queryType": "timeSeriesList",
+            "refId": "A",
+            "timeSeriesList": {
+              "alignmentPeriod": "cloud-monitoring-auto",
+              "crossSeriesReducer": "REDUCE_NONE",
+              "filters": [
+                "resource.label.cluster_name",
+                "=",
+                "prod-cluster",
+                "AND",
+                "metric.type",
+                "=",
+                "kubernetes.io/node/ephemeral_storage/used_bytes"
+              ],
+              "groupBys": [
+                "resource.label.node_name"
+              ],
+              "perSeriesAligner": "ALIGN_NONE",
+              "preprocessor": "none",
+              "projectName": "$project"
+            },
+            "timeSeriesQuery": {
+              "projectName": "massage-170212",
+              "query": ""
+            }
+          },
+          {
+            "datasource": {
+              "type": "stackdriver",
+              "uid": "$datasource"
+            },
+            "hide": false,
+            "queryType": "timeSeriesList",
+            "refId": "B",
+            "timeSeriesList": {
+              "alignmentPeriod": "cloud-monitoring-auto",
+              "crossSeriesReducer": "REDUCE_NONE",
+              "filters": [
+                "resource.label.cluster_name",
+                "=",
+                "prod-cluster",
+                "AND",
+                "metric.type",
+                "=",
+                "kubernetes.io/node/ephemeral_storage/total_bytes"
+              ],
+              "groupBys": [
+                "resource.label.node_name"
+              ],
+              "perSeriesAligner": "ALIGN_NONE",
+              "preprocessor": "none",
+              "projectName": "$project"
+            }
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "($A * 100) /  $B",
+            "hide": false,
+            "refId": "C",
+            "type": "math"
+          }
+        ],
+        "title": "Nodes - Disk Usage",
+        "transformations": [
+          {
+            "id": "joinByLabels",
+            "options": {
+              "value": "resource.label.node_name"
+            }
+          }
+        ],
+        "type": "bargauge"
+      }
+    ],
+    "refresh": "30s",
+    "revision": 1,
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "Google Cloud Monitoring",
+            "value": "Google Cloud Monitoring"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "label": "Datasource",
+          "multi": false,
+          "name": "datasource",
+          "options": [],
+          "query": "stackdriver",
+          "queryValue": "",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "Massage",
+            "value": "massage-170212"
+          },
+          "datasource": {
+            "uid": "$datasource"
+          },
+          "definition": "Google Cloud Monitoring - Projects",
+          "hide": 0,
+          "includeAll": false,
+          "label": "Project",
+          "multi": false,
+          "name": "project",
+          "options": [],
+          "query": {
+            "labelKey": "",
+            "loading": false,
+            "projectName": "massage-170212",
+            "projects": [
+              {
+                "label": "Massage",
+                "value": "massage-170212"
+              }
+            ],
+            "refId": "CloudMonitoringVariableQueryEditor-VariableQuery",
+            "selectedMetricType": "actions.googleapis.com/smarthome_action/num_active_users",
+            "selectedQueryType": "projects",
+            "selectedSLOService": "",
+            "selectedService": "actions.googleapis.com",
+            "sloServices": []
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "grafana auto",
+            "value": "grafana-auto"
+          },
+          "datasource": {
+            "uid": "${datasource}"
+          },
+          "definition": "",
+          "hide": 0,
+          "includeAll": false,
+          "label": "Alignment Period",
+          "multi": false,
+          "name": "alignmentPeriod",
+          "options": [],
+          "query": {
+            "labelKey": "",
+            "loading": false,
+            "projectName": "$project",
+            "projects": [
+              {
+                "name": "project-1",
+                "value": "project-1"
+              },
+              {
+                "name": "project-2",
+                "value": "project-2"
+              }
+            ],
+            "refId": "CloudMonitoringVariableQueryEditor-VariableQuery",
+            "selectedMetricType": "actions.googleapis.com/smarthome_action/num_active_users",
+            "selectedQueryType": "alignmentPeriods",
+            "selectedSLOService": "",
+            "selectedService": "actions.googleapis.com",
+            "sloServices": []
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "GKE Nodes Usage Status",
+    "uid": "gke_nodes_usage_status",
+    "version": 1,
+    "weekStart": ""
+  }
