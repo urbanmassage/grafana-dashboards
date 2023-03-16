@@ -1470,7 +1470,7 @@
       ]
     },
     "timezone": "browser",
-    "title": "Cluster Monitoring for Kubernetes Copy",
+    "title": "Cluster Monitoring for Kubernetes",
     "uid": "k8s_cluster_monitoring",
     "version": 1,
     "weekStart": ""
