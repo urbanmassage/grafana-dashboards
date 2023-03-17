@@ -419,7 +419,7 @@
               "type": "prometheus",
               "uid": "PBFA97CFB590B2093"
             },
-            "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",pod_name=~\"$pod\",container_name=~\"$container\",container_name!=\"POD\",image!=\"\"}[2m]))",
+            "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",pod=~\"$pod\",container=~\"$container\",container!=\"POD\",image!=\"\"}[2m]))",
             "format": "time_series",
             "intervalFactor": 2,
             "refId": "A",
@@ -486,11 +486,11 @@
               "uid": "PBFA97CFB590B2093"
             },
             "editorMode": "code",
-            "expr": "sum by (container_name)(rate(container_cpu_usage_seconds_total{pod=~\"$pod\", container=~\"$container\", image!=\"\", container_name!=\"POD\", image!=\"\"}[2m]))",
+            "expr": "sum by (container)(rate(container_cpu_usage_seconds_total{pod=~\"$pod\", container=~\"$container\", image!=\"\", container!=\"POD\", image!=\"\"}[2m]))",
             "format": "time_series",
             "instant": false,
             "intervalFactor": 2,
-            "legendFormat": "Current: {{ container_name }}",
+            "legendFormat": "Current: {{ container }}",
             "refId": "A",
             "step": 2
           },
@@ -619,7 +619,7 @@
               "type": "prometheus",
               "uid": "PBFA97CFB590B2093"
             },
-            "expr": "sum(container_memory_working_set_bytes{namespace=~\"$namespace\", pod_name=~\"$pod\",container_name=~\"$container\", container_name!=\"POD\", container_name!=\"\",image!=\"\"})",
+            "expr": "sum(container_memory_working_set_bytes{namespace=~\"$namespace\", pod=~\"$pod\",container=~\"$container\", container!=\"POD\", container!=\"\",image!=\"\"})",
             "format": "time_series",
             "hide": false,
             "intervalFactor": 2,
@@ -687,11 +687,11 @@
               "uid": "PBFA97CFB590B2093"
             },
             "editorMode": "code",
-            "expr": "avg by(container_name) (container_memory_working_set_bytes{pod=~\"$pod\", container=~\"$container\", container!=\"POD\",container!=\"\",image!=\"\"})",
+            "expr": "avg by(container) (container_memory_working_set_bytes{pod=~\"$pod\", container=~\"$container\", container!=\"POD\",container!=\"\",image!=\"\"})",
             "format": "time_series",
             "interval": "10s",
             "intervalFactor": 1,
-            "legendFormat": "Current: {{ container_name }}",
+            "legendFormat": "Current: {{ container }}",
             "metric": "container_memory_usage_bytes",
             "range": true,
             "refId": "A",
@@ -827,7 +827,7 @@
               "type": "prometheus",
               "uid": "PBFA97CFB590B2093"
             },
-            "expr": "sum(rate(container_network_transmit_bytes_total{namespace=~\"$namespace\",pod_name=~\"$pod\"}[5m])) + sum(rate(container_network_receive_bytes_total{namespace=~\"$namespace\",pod_name=~\"$pod\"}[5m])) ",
+            "expr": "sum(rate(container_network_transmit_bytes_total{namespace=~\"$namespace\",pod=~\"$pod\"}[5m])) + sum(rate(container_network_receive_bytes_total{namespace=~\"$namespace\",pod=~\"$pod\"}[5m])) ",
             "format": "time_series",
             "intervalFactor": 2,
             "refId": "A",
@@ -897,7 +897,7 @@
             "expr": "rate (container_network_transmit_bytes_total{pod=~\"$pod\",interface=~\"eth0|ens.*\"}[5m])",
             "format": "time_series",
             "intervalFactor": 2,
-            "legendFormat": "TX : {{ pod_name }}",
+            "legendFormat": "TX : {{ pod }}",
             "range": true,
             "refId": "A",
             "step": 2
@@ -911,7 +911,7 @@
             "expr": "rate (container_network_receive_bytes_total{pod=~\"$pod\",interface=~\"eth0|ens.*\"}[5m])",
             "format": "time_series",
             "intervalFactor": 2,
-            "legendFormat": "RX : {{ pod_name }}",
+            "legendFormat": "RX : {{ pod }}",
             "range": true,
             "refId": "B",
             "step": 2
