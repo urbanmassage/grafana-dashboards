@@ -716,7 +716,7 @@
       ]
     },
     "timezone": "browser",
-    "title": "K8 Deployments Status",
+    "title": "K8s Deployments Status",
     "uid": "k8s_deployment_status",
     "version": 1,
     "weekStart": ""

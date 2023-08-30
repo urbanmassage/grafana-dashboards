@@ -538,8 +538,8 @@
       ]
     },
     "timezone": "browser",
-    "title": "K8 Pods Resources Usage Overview",
-    "uid": "k8-pods-resources-usage-overview",
+    "title": "K8s Pods Resources Usage Overview",
+    "uid": "k8s-pods-resources-usage-overview",
     "version": 2,
     "weekStart": ""
   }
